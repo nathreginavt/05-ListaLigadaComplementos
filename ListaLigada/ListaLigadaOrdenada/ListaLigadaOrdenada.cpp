@@ -70,7 +70,7 @@ void menu()
 
 void inicializar()
 {
-	// se a lista j� possuir elementos
+	// se a lista já possuir elementos
 // libera a memoria ocupada
 	NO* aux = primeiro;
 	while (aux != NULL) {
@@ -125,19 +125,25 @@ void inserirElemento()
 	cin >> novo->valor;
 	novo->prox = NULL;
 
-	if (primeiro == NULL)
+	if (primeiro == NULL)    //Caso seja o primeiro elemento
 	{
 		primeiro = novo;
 	}
-	else
-	{
-		// procura o final da lista
-		NO* aux = primeiro;
-		while (aux->prox != NULL) {
-			aux = aux->prox;
-		}
-		aux->prox = novo;
+	else if(novo->valor < primeiro->valor){ //Caso seja menor que o primeiro
+	    NO* aux = primeiro;
+	    
+	    primeiro = novo;
+	    primeiro->prox = aux;
 	}
+	    else{         //Caso nao seja menor que o primeiro, percorrer a lista
+	        NO* aux = primeiro;
+	        while (aux->prox && novo->valor > aux->prox->valor){
+	            aux = aux->prox;
+	        }
+	        novo->prox = aux->prox;
+	        aux->prox = novo;
+	    }
+
 }
 
 void excluirElemento()
@@ -147,7 +153,17 @@ void excluirElemento()
 
 void buscarElemento()
 {
-
+    int busca;
+    
+    cout << "Busca: ";
+    cin >> busca;
+    
+    NO* aux = primeiro;
+    
+    for(aux; aux->valor=busca; aux = aux->prox){ //corrigir expressão
+        
+        if(aux->valor<=busca){
+            cout << "Elemento encontrado!" << endl;
+        }
+    }
 }
-
-
