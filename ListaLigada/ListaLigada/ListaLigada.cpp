@@ -8,6 +8,7 @@ struct NO {
 };
 
 NO* primeiro = NULL;
+NO* ultimo = NULL;
 
 // headers
 void menu();
@@ -70,7 +71,7 @@ void menu()
 
 void inicializar()
 {
-	// se a lista já possuir elementos
+	// se a lista jÃ¡ possuir elementos
 // libera a memoria ocupada
 	NO* aux = primeiro;
 	while (aux != NULL) {
@@ -138,6 +139,8 @@ void inserirElemento()
 		}
 		aux->prox = novo;
 	}
+	
+	ultimo = novo;
 }
 
 void excluirElemento()
@@ -149,5 +152,3 @@ void buscarElemento()
 {
 
 }
-
-
