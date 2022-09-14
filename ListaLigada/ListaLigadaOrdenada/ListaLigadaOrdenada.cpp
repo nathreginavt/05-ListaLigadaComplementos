@@ -153,17 +153,29 @@ void excluirElemento()
 
 void buscarElemento()
 {
-    int busca;
+    void buscarElemento()
+{
+    int busca, encontrado = 0;
     
     cout << "Busca: ";
     cin >> busca;
     
     NO* aux = primeiro;
     
-    for(aux; aux->valor=busca; aux = aux->prox){ //corrigir expressão
+    
+    while (aux->valor && busca >= aux->prox->valor){
         
         if(aux->valor<=busca){
-            cout << "Elemento encontrado!" << endl;
+            encontrado=1;
         }
-    }
+	    aux = aux->prox;
+	 }
+	 if (encontrado = 1){
+	     cout << "Elemento encontrado!" << endl;
+	 }
+	 else{
+	     cout << "Elemento não encontrado!" << endl;
+	 }
+        
+}
 }
