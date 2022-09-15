@@ -148,7 +148,30 @@ void inserirElemento()
 
 void excluirElemento()
 {
-
+    int excluir;
+    
+    cout << "Excluir: ";
+    cin >> excluir;
+    
+    NO* aux = primeiro;
+    NO* paraExcluir = NULL;
+    
+    if(paraExcluir == primeiro){
+        paraExcluir = primeiro;
+        primeiro = primeiro->prox;
+        free(paraExcluir);
+        cout << "ELEMENTO EXCLUÍDO!" << endl;
+    }
+    else{
+        while (aux->valor <= excluir){
+            if (aux->valor == excluir){
+                paraExcluir = aux;
+                free(paraExcluir);
+                cout << "ELEMENTO EXCLUÍDO!" << endl;
+            }
+        aux = aux->prox;
+        }
+    }
 }
 
 void buscarElemento()
