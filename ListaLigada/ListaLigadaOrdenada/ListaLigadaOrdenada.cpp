@@ -135,70 +135,78 @@ void inserirElemento()
 	    primeiro = novo;
 	    primeiro->prox = aux;
 	}
-	    else{         //Caso nao seja menor que o primeiro, percorrer a lista
+	    else {         //Caso nao seja menor que o primeiro, percorrer a lista
 	        NO* aux = primeiro;
-	        while (aux->prox && novo->valor > aux->prox->valor){
-	            aux = aux->prox;
-	        }
-	        novo->prox = aux->prox;
-	        aux->prox = novo;
+			while (aux->prox != NULL) 
+			{
+				if (aux->prox->valor > novo->valor) 
+				{
+					break;
+				}
+				aux = aux->prox;
+			}
+			
+			if (novo->valor != aux->valor) {
+				novo->prox = aux->prox;
+				aux->prox = novo;
+			}
+			else {
+				cout << "Elemento ja se encontra na lista! \n";
+			}
 	    }
-
 }
 
 void excluirElemento()
 {
-    int excluir;
+    NO* excluir = (NO*)malloc(sizeof(NO));
     
     cout << "Excluir: ";
-    cin >> excluir;
+    cin >> excluir->valor;
+	excluir->prox = NULL;
     
-    NO* aux = primeiro;
-    NO* paraExcluir = NULL;
-    
-    if(paraExcluir == primeiro){
-        paraExcluir = primeiro;
-        primeiro = primeiro->prox;
-        free(paraExcluir);
-        cout << "ELEMENTO EXCLUÍDO!" << endl;
-    }
-    else{
-        while (aux->valor <= excluir){
-            if (aux->valor == excluir){
-                paraExcluir = aux;
-                free(paraExcluir);
-                cout << "ELEMENTO EXCLUÍDO!" << endl;
-            }
-        aux = aux->prox;
-        }
-    }
+	if (excluir == primeiro) {
+		primeiro = primeiro->prox;
+		free(excluir);
+	}
+	else {
+		NO* aux = primeiro;
+		while (aux->prox != NULL) {
+			if (aux->prox->valor == excluir->valor)
+			{
+				aux->prox = aux->prox->prox;
+				free(excluir);
+				cout << "Elemento Excluido \n";
+				break;
+			}
+			aux = aux->prox;
+		}
+	}
 }
 
 void buscarElemento()
 {
-    void buscarElemento()
-{
-    int busca, encontrado = 0;
+	int busca;
+	bool encontrado=false;
     
     cout << "Busca: ";
     cin >> busca;
     
     NO* aux = primeiro;
-    
-    
-    while (aux->valor && busca >= aux->prox->valor){
-        
-        if(aux->valor<=busca){
-            encontrado=1;
-        }
-	    aux = aux->prox;
-	 }
-	 if (encontrado = 1){
-	     cout << "Elemento encontrado!" << endl;
-	 }
-	 else{
-	     cout << "Elemento não encontrado!" << endl;
-	 }
-        
-}
+	while (aux != NULL)
+	{
+		if (aux->valor == busca) {
+			encontrado = true;
+			break;
+		}
+		aux = aux->prox;
+	}
+
+	if (encontrado == true) 
+	{
+		cout << "Elemento encontrado! \n";
+	}
+	else
+	{
+		cout << "Elemento nao encontrado! \n";
+	}   
 }
