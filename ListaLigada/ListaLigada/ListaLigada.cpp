@@ -129,18 +129,13 @@ void inserirElemento()
 	if (primeiro == NULL)
 	{
 		primeiro = novo;
+  ultimo = novo;
 	}
 	else
 	{
-		// procura o final da lista
-		NO* aux = primeiro;
-		while (aux->prox != NULL) {
-			aux = aux->prox;
-		}
-		aux->prox = novo;
-	}
-	
-	ultimo = novo;
+   ultimo->prox = novo;
+   novo = ultimo;
+ }
 }
 
 void excluirElemento()
