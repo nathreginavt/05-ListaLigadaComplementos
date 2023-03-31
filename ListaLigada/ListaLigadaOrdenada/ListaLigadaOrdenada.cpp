@@ -158,55 +158,66 @@ void inserirElemento()
 
 void excluirElemento()
 {
-    NO* excluir = (NO*)malloc(sizeof(NO));
-    
-    cout << "Excluir: ";
-    cin >> excluir->valor;
-	excluir->prox = NULL;
-    
-	if (excluir == primeiro) {
-		primeiro = primeiro->prox;
-		free(excluir);
+ 
+	if (primeiro == NULL) {
+		cout << "Lista vazia! \n";
 	}
 	else {
-		NO* aux = primeiro;
-		while (aux->prox != NULL) {
-			if (aux->prox->valor == excluir->valor)
-			{
-				aux->prox = aux->prox->prox;
-				free(excluir);
-				cout << "Elemento Excluido \n";
-				break;
+		NO* excluir = (NO*)malloc(sizeof(NO));
+
+		cout << "Excluir: ";
+		cin >> excluir->valor;
+		excluir->prox = NULL;
+
+		if (excluir == primeiro) {
+			primeiro = primeiro->prox;
+			free(excluir);
+		}
+		else {
+			NO* aux = primeiro;
+			while (aux->prox != NULL) {
+				if (aux->prox->valor == excluir->valor)
+				{
+					aux->prox = aux->prox->prox;
+					free(excluir);
+					cout << "Elemento Excluido \n";
+					break;
+				}
+				aux = aux->prox;
 			}
-			aux = aux->prox;
 		}
 	}
 }
 
 void buscarElemento()
 {
-	int busca;
-	bool encontrado=false;
-    
-    cout << "Busca: ";
-    cin >> busca;
-    
-    NO* aux = primeiro;
-	while (aux != NULL)
-	{
-		if (aux->valor == busca) {
-			encontrado = true;
-			break;
-		}
-		aux = aux->prox;
+	if (primeiro == NULL) {
+		cout << "Lista vazia! \n";
 	}
+	else {
+		int busca;
+		bool encontrado = false;
 
-	if (encontrado == true) 
-	{
-		cout << "Elemento encontrado! \n";
+		cout << "Busca: ";
+		cin >> busca;
+
+		NO* aux = primeiro;
+		while (aux != NULL)
+		{
+			if (aux->valor == busca) {
+				encontrado = true;
+				break;
+			}
+			aux = aux->prox;
+		}
+
+		if (encontrado == true)
+		{
+			cout << "Elemento encontrado! \n";
+		}
+		else
+		{
+			cout << "Elemento nao encontrado! \n";
+		}
 	}
-	else
-	{
-		cout << "Elemento nao encontrado! \n";
-	}   
 }
