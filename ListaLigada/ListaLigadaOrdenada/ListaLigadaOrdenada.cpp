@@ -169,9 +169,10 @@ void excluirElemento()
 		cin >> excluir->valor;
 		excluir->prox = NULL;
 
-		if (excluir == primeiro) {
+		if (excluir->valor == primeiro->valor) {
 			primeiro = primeiro->prox;
 			free(excluir);
+			cout << "Elemento Excluido \n";
 		}
 		else {
 			NO* aux = primeiro;
